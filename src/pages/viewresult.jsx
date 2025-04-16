@@ -1,15 +1,31 @@
-
+import { useEffect } from "react"
 import reactQuiz from "../data/quizdata"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 export default function ViewResult() {
     const navigate = useNavigate()
+    const [btnDisply, setBtnDisplay] = useState(false)
+    const [activateSubmit, setactivateSubmit] = useState(false)
     const [currentQesIndex, setcurrentQesIndex] = useState(0)
     const currentQuestion = reactQuiz[currentQesIndex]
     const optionLables = ["A", "B", "C", "D"]
     const correctAnswer = currentQuestion.answer
 
-    
+    useEffect(() => {
+        if (reactQuiz.length - 1 === currentQesIndex) {
+            setactivateSubmit(true)
+        }
+        if (currentQesIndex > 0) {
+            setBtnDisplay(true)
+        }
+        else {
+            setBtnDisplay(false)
+        }
+        // setactive(false)
+        return () => {
+
+        }
+    }, [currentQesIndex])
 
     function handleNext() {
         setcurrentQesIndex((prev) => prev + 1)
@@ -28,6 +44,7 @@ export default function ViewResult() {
             <div className="absolute bg-[#904af8] w-full h-48 rounded-b-full">
 
             </div>
+            
             <h1 className="z-10 text-white text-center text-4xl font-bold mt-9">Quiz</h1>
             <div className="relative flex flex-col z-10 bg-white mx-10 my-5 rounded-xl pt-4  px-4 w-72 h-[450px]">
                 <p>{currentQuestion.id}. {currentQuestion.question}</p>
@@ -39,8 +56,8 @@ export default function ViewResult() {
                     })}
                 </ul>
 
-                <div >
-                    <div>
+                <div style={{ display: activateSubmit ? "none" : "block" }}>
+                    <div style={{ display: btnDisply ? "block" : "none" }}>
                         <button onClick={handlePrev} className="absolute bottom-2 left-5 rounded-xl bg-[#904af8] text-white py-1 px-5">
                             Prev Quiz
                         </button>
@@ -48,14 +65,14 @@ export default function ViewResult() {
                             Next Quiz
                         </button>
                     </div>
-                    <div>
+                    <div style={{ display: btnDisply ? "none" : "block" }}>
                         <button onClick={handleNext} className="absolute bottom-2 right-5  rounded-xl bg-[#904af8] text-white py-1 px-5">
                             Next Quiz
                         </button>
                     </div>
                 </div>
-                <div className="absolute bottom-2 right-5 flex">
-                    <button onClick={handlesubmit} className="bg-red-500 text-white font-medium px-5 py-1 rounded-2xl">Go to Home</button>
+                <div className="absolute bottom-2 right-5 flex" style={{ display: activateSubmit ? "flex" : "none" }}>
+                    <button onClick={handlesubmit} className="bg-red-500 text-white font-medium px-5 py-1 rounded-2xl">Go Home</button>
                 </div>
             </div>
         </div>
