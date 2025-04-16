@@ -57,7 +57,7 @@ export default function Instraction(){
                 
             </ol>
             </div>
-            <div className="flex gap-40 justify-center">
+            <div className="flex gap-20 justify-center">
             <Btn btnname="Back" rootpath="/"/>
             <Btn btnname="Next" rootpath="/quiz"/>
             </div>
