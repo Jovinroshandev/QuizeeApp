@@ -17,7 +17,7 @@ export default function Result() {
             </div>
             </div>
             
-            <h1 className="z-10 text-white text-center mt-6 text-4xl font-bold">Result</h1>
+            <h1 className="z-10 text-white text-center  mt-8 text-4xl font-bold">Result</h1>
             <div className="relative items-center justify-center gap-5 flex flex-col z-10 bg-white mx-10 my-5 rounded-xl  px-4 w-72 h-[450px]">
                 <img className="z-10 w-40" src={cupImage} alt="" />
                 <h2 className="text-5xl font-medium">{name}</h2>
